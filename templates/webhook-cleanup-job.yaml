@@ -2,8 +2,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: {{ include "fdp-sparkoperator.fullname" . }}-webhook-cleanup
-  namespace: {{ .Release.Namespace }}
+  name: {{ include "fdp-sparkoperator.fullname" . }}
   annotations:
     "helm.sh/hook": pre-delete, pre-upgrade
     "helm.sh/hook-delete-policy": hook-succeeded

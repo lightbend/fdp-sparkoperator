@@ -3,7 +3,6 @@ kind: Service
 apiVersion: v1
 metadata:
   name: {{ .Release.Name }}-webhook
-  namespace: {{ .Release.Namespace }}
   labels:
     app.kubernetes.io/name: {{ include "fdp-sparkoperator.name" . }}
     helm.sh/chart: {{ include "fdp-sparkoperator.chart" . }}

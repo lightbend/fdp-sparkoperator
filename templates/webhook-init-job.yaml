@@ -2,8 +2,10 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: {{ include "fdp-sparkoperator.fullname" . }}-webhook-init
-  namespace: {{ .Release.Namespace }}
+  name: {{ include "fdp-sparkoperator.fullname" . }}
+  annotations:
+    "helm.sh/hook": post-install, post-upgrade
+    "helm.sh/hook-delete-policy": hook-succeeded
   labels:
     app.kubernetes.io/name: {{ include "fdp-sparkoperator.name" . }}
     helm.sh/chart: {{ include "fdp-sparkoperator.chart" . }}

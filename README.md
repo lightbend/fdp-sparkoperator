@@ -24,7 +24,7 @@ The following table lists the configurable parameters of the Spark operator char
 | Parameter           | Description                                                  | Default                              |
 | ------------------- | ------------------------------------------------------------ | ------------------------------------ |
 | `operatorImageName` | The name of the operator image                               | `lightbend/sparkoperator`            |
-| `operatorVersion`   | The version of the operator to install                       | `2.1.2-OpenShift-v1beta2-1.0.1-2.4.4-rh-2.12` |
+| `operatorVersion`   | The version of the operator to install                       | `2.1.1-OpenShift-v1beta1-0.8.2-2.4.3-rh` |
 | `imagePullPolicy`   | Docker image pull policy                                     | `IfNotPresent`                       |
 | `sparkJobNamespace` | K8s namespace where Spark jobs are to be deployed. It is also the namespace that the operator instance is to manage. | `default` |
 | `enableWebhook`     | Whether to enable mutating admission webhook                 | true                                 |
@@ -40,10 +40,6 @@ The following table lists the configurable parameters of the Spark operator char
 | `rbac.create`       | Whether to create required roles and bindings                | `true`                               |
 | `resyncInterval`    | Informer resync interval in seconds                          | 30                                   |
 | `webhookPort`       | Service port of the webhook server                           | 8080                                 |
-| `resources` | Resources needed for the operator deployment | {} |
-| `enableBatchScheduler` | Whether to enable batch scheduler for pod scheduling | false |
-| `enableResourceQuotaEnforcement` | Whether to enable the ResourceQuota enforcement for SparkApplication resources. Requires the webhook to be enabled by setting `enableWebhook` to true. | false |
-| `enableLeaderElection` | Whether to enable leader election when the operator Deployment has more than one replica, i.e., when `replicas` is greater than 1. | false |
 | **Name-related configs** | **See below for further explanation**                   |                                       |
 | `nameOverride`      | Suffix for created ServiceAccount names, and value of `app.kubernetes.io/name` labels | <Chart.Name> |
 | `fullnameOverride`  | Used when generating fully qualified app name                | ""                                    |
@@ -52,7 +48,7 @@ The following table lists the configurable parameters of the Spark operator char
 | `serviceAccounts.spark.create`         | Create Spark job ServiceAccount name using release name | `true`                  |
 | `serviceAccounts.spark.name`           | ServiceAccount name for the Spark jobs     | `default` if not created             |
 
-Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
+Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. 
 
 ##### Settings related to naming
 
