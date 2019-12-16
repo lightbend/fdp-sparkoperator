@@ -8,12 +8,12 @@ The Operator requires Kubernetes version 1.8 and above because it relies on garb
 
 #### Installing the chart
 
-The chart can be installed by running:
+The chart can be installed by cloning the repo and running:
 
 ```bash
-$ helm repo add lightbend https://repo.lightbend.com/helm-charts
-$ helm install lightbend/fdp-sparkoperator --namespace spark-operator
+$ helm install ./fdp-sparkoperator --namespace spark-operator
 ```
+Also you could use a released artifact from Github releases instead, when invoking helm install.
 
 Note that you need to use the `--namespace` flag during `helm install` to specify the namespace into which you want to install the operator. The namespace can be existing or not. When it's not available, Helm will take care of creating the namespace. Note that this namespace has no relation to the namespace where you would like to deploy Spark jobs (i.e. the setting `sparkJobNamespace` shown in the table below). They can be the same namespace or different ones.
 
@@ -24,7 +24,7 @@ The following table lists the configurable parameters of the Spark operator char
 | Parameter           | Description                                                  | Default                              |
 | ------------------- | ------------------------------------------------------------ | ------------------------------------ |
 | `operatorImageName` | The name of the operator image                               | `lightbend/sparkoperator`            |
-| `operatorVersion`   | The version of the operator to install                       | `2.1.1-OpenShift-v1beta1-0.8.2-2.4.3-rh` |
+| `operatorVersion`   | The version of the operator to install                       | `1.3.0-M1-OpenJDK-2.4.4-0.8.2-cloudflow-2.12` |
 | `imagePullPolicy`   | Docker image pull policy                                     | `IfNotPresent`                       |
 | `sparkJobNamespace` | K8s namespace where Spark jobs are to be deployed. It is also the namespace that the operator instance is to manage. | `default` |
 | `enableWebhook`     | Whether to enable mutating admission webhook                 | true                                 |
@@ -48,7 +48,7 @@ The following table lists the configurable parameters of the Spark operator char
 | `serviceAccounts.spark.create`         | Create Spark job ServiceAccount name using release name | `true`                  |
 | `serviceAccounts.spark.name`           | ServiceAccount name for the Spark jobs     | `default` if not created             |
 
-Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. 
+Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`.
 
 ##### Settings related to naming
 
