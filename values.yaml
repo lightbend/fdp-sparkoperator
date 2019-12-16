@@ -1,0 +1,59 @@
+operatorImageName: lightbend/sparkoperator
+operatorVersion: 2.1.2-OpenShift-v1beta2-1.0.1-2.4.4-rh-2.12
+imagePullPolicy: IfNotPresent
+replicas: 1
+
+sparkJobNamespace: sparkoperator
+
+rbac:
+  create: true
+
+serviceAccounts:
+  spark:
+    create: true
+    name:
+  sparkoperator:
+    create: true
+    name:
+
+enableWebhook: false
+webhookPort: 8080
+
+enableMetrics: true
+metricsPort: 10254
+metricsEndpoint: "/metrics"
+metricsPrefix: ""
+
+controllerThreads: 10
+ingressUrlFormat: ""
+installCrds: false
+resyncInterval: 30
+
+
+## Node labels for pod assignment
+## Ref: https://kubernetes.io/docs/user-guide/node-selection/
+##
+nodeSelector: {}
+
+logLevel: 2
+
+podAnnotations: {}
+
+## Resources for the sparkoperator deployment
+## Ref: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/
+##
+resources: {}
+
+## Whether to enable batch scheduler for pod scheduling,
+## if enabled, end user can specify batch scheduler name in spark application.
+enableBatchScheduler: false
+
+## Whether to enable the ResourceQuota enforcement for SparkApplication resources.
+## Requires the webhook to be enabled by setting enableWebhook to true.
+## Ref: https://github.com/GoogleCloudPlatform/spark-on-k8s-operator/blob/master/docs/user-guide.md#enabling-resource-quota-enforcement.
+enableResourceQuotaEnforcement: false
+
+## Whether to enable leader election when the operator Deployment has more than one replica.
+## Only applicable when `replicas` is set to a value greater than 1.
+## Ref: https://github.com/GoogleCloudPlatform/spark-on-k8s-operator/blob/master/docs/user-guide.md#enabling-leader-election-for-high-availability.
+enableLeaderElection: false

@@ -1,0 +1,10 @@
+name: fdp-sparkoperator
+description: A Helm chart for Spark on Kubernetes operator
+version: 0.7.1
+appVersion: v1beta2-1.0.1-2.4.4
+kubeVersion: ">=1.8.0-0"
+keywords:
+  - spark
+home: https://github.com/lightbend/spark-on-k8s-operator
+maintainers:
+- name: Lightbend Cloudflow Team

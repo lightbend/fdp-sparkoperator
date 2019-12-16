@@ -1,0 +1,22 @@
+{{ if .Values.enableWebhook }}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ include "fdp-sparkoperator.fullname" . }}-webhook-init
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: {{ include "fdp-sparkoperator.name" . }}
+    helm.sh/chart: {{ include "fdp-sparkoperator.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  template:
+    spec:
+      serviceAccountName: {{ include "sparkoperator.serviceAccountName" . }}
+      restartPolicy: OnFailure
+      containers:
+      - name: main
+        image: {{ .Values.operatorImageName }}:{{ .Values.operatorVersion }}
+        imagePullPolicy: {{ .Values.imagePullPolicy }}
+        command: ["/usr/bin/gencerts.sh", "-n", "{{ .Release.Namespace }}", "-s", "{{ .Release.Name }}-webhook", "-p"]
+{{ end }}
