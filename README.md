@@ -8,12 +8,12 @@ The Operator requires Kubernetes version 1.8 and above because it relies on garb
 
 #### Installing the chart
 
-The chart can be installed by running:
+The chart can be installed by cloning the repo and running:
 
 ```bash
-$ helm repo add lightbend https://repo.lightbend.com/helm-charts
-$ helm install lightbend/fdp-sparkoperator --namespace spark-operator
+$ helm install ./fdp-sparkoperator --namespace spark-operator
 ```
+Also you could use a released artifact from Github releases instead, when invoking `helm install`.
 
 Note that you need to use the `--namespace` flag during `helm install` to specify the namespace into which you want to install the operator. The namespace can be existing or not. When it's not available, Helm will take care of creating the namespace. Note that this namespace has no relation to the namespace where you would like to deploy Spark jobs (i.e. the setting `sparkJobNamespace` shown in the table below). They can be the same namespace or different ones.
 
